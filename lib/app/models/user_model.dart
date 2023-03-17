@@ -13,17 +13,17 @@ class UserModel extends HiveObject {
   @HiveField(2)
   String name;
   @HiveField(3)
-  String id;
+  String objectId;
 
   UserModel({
     required this.email,
     required this.password,
     required this.name,
-    required this.id,
+    required this.objectId,
   });
 
   factory UserModel.empty() {
-    return UserModel(email: "", password: "", name: "", id: "");
+    return UserModel(email: "", password: "", name: "", objectId: "");
   }
 
   UserModel copyWith({
@@ -36,7 +36,7 @@ class UserModel extends HiveObject {
       email: email ?? this.email,
       password: password ?? this.password,
       name: name ?? this.name,
-      id: id ?? this.id,
+      objectId: id ?? this.objectId,
     );
   }
 
@@ -45,7 +45,7 @@ class UserModel extends HiveObject {
       'email': email,
       'password': password,
       'name': name,
-      'id': id,
+      'objectId': objectId,
     };
   }
 
@@ -54,7 +54,7 @@ class UserModel extends HiveObject {
       email: map['email'] as String,
       password: map['password'] as String,
       name: map['name'] as String,
-      id: map['id'] as String,
+      objectId: map['objectId'] as String,
     );
   }
 
@@ -65,7 +65,7 @@ class UserModel extends HiveObject {
 
   @override
   String toString() {
-    return 'UserModel(email: $email, password: $password, name: $name, id: $id)';
+    return 'UserModel(email: $email, password: $password, name: $name, objectId: $objectId)';
   }
 
   @override
@@ -75,11 +75,14 @@ class UserModel extends HiveObject {
     return other.email == email &&
         other.password == password &&
         other.name == name &&
-        other.id == id;
+        other.objectId == objectId;
   }
 
   @override
   int get hashCode {
-    return email.hashCode ^ password.hashCode ^ name.hashCode ^ id.hashCode;
+    return email.hashCode ^
+        password.hashCode ^
+        name.hashCode ^
+        objectId.hashCode;
   }
 }

@@ -36,19 +36,16 @@ mixin _$AuthStore on AuthStoreBase, Store {
         .run(() => super.loadingUserOnStart());
   }
 
-  late final _$AuthStoreBaseActionController =
-      ActionController(name: 'AuthStoreBase', context: context);
+  late final _$loginAsyncAction =
+      AsyncAction('AuthStoreBase.login', context: context);
 
   @override
-  dynamic login(String email, String password) {
-    final _$actionInfo = _$AuthStoreBaseActionController.startAction(
-        name: 'AuthStoreBase.login');
-    try {
-      return super.login(email, password);
-    } finally {
-      _$AuthStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future login(UserModel user) {
+    return _$loginAsyncAction.run(() => super.login(user));
   }
+
+  late final _$AuthStoreBaseActionController =
+      ActionController(name: 'AuthStoreBase', context: context);
 
   @override
   dynamic logout() {

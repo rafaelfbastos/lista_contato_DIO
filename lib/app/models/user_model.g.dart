@@ -20,7 +20,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       email: fields[0] as String,
       password: fields[1] as String,
       name: fields[2] as String,
-      id: fields[3] as String,
+      objectId: fields[3] as String,
     );
   }
 
@@ -35,7 +35,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(2)
       ..write(obj.name)
       ..writeByte(3)
-      ..write(obj.id);
+      ..write(obj.objectId);
   }
 
   @override

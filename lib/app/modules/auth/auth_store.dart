@@ -16,13 +16,16 @@ abstract class AuthStoreBase with Store {
   }
 
   @action
-  login(String email, String password) {
-    _userLogged =
-        UserModel(email: "email", password: "password", name: "name", id: "id");
+  login(UserModel user) async {
+    var box = await Hive.openBox<UserModel>("user");
+    await box.add(user);
+    _userLogged = user;
   }
 
   @action
-  logout() {
+  logout() async {
+    var box = await Hive.openBox<UserModel>("user");
+    await box.clear();
     _userLogged = UserModel.empty();
   }
 }
