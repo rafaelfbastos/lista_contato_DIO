@@ -1,16 +1,14 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:lista_contatos/app/models/user_model.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../core/exeptions/auth_exception.dart';
-import '../../../services/user_service_impl.dart';
+import '../../core/exeptions/auth_exception.dart';
+import '../../models/user_model.dart';
+import '../../services/user_service_impl.dart';
 
-part 'register_page_controller.g.dart';
+part 'auth_controller_pages.g.dart';
 
-class RegisterPageController = RegisterPageControllerBase
-    with _$RegisterPageController;
+class AuthControllerPages = AuthControllerPagesBase with _$AuthControllerPages;
 
-abstract class RegisterPageControllerBase with Store {
+abstract class AuthControllerPagesBase with Store {
   final UserServiceImpl _userServiceImpl;
 
   @readonly
@@ -32,9 +30,22 @@ abstract class RegisterPageControllerBase with Store {
   @action
   void setError(String error) => _error = error;
 
-  RegisterPageControllerBase({
+  AuthControllerPagesBase({
     required UserServiceImpl userServiceImpl,
   }) : _userServiceImpl = userServiceImpl;
+
+  login(String email, String password) async {
+    try {
+      showLoading();
+      await _userServiceImpl.login(email, password);
+      hideLoading();
+    } on AuthException catch (e) {
+      hideLoading();
+      setError(e.message ?? "Erro ao logar");
+    } finally {
+      setError("");
+    }
+  }
 
   register(UserModel user) async {
     try {

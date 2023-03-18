@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'register_page_controller.dart';
+part of 'auth_controller_pages.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'register_page_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$RegisterPageController on RegisterPageControllerBase, Store {
+mixin _$AuthControllerPages on AuthControllerPagesBase, Store {
   late final _$_errorAtom =
-      Atom(name: 'RegisterPageControllerBase._error', context: context);
+      Atom(name: 'AuthControllerPagesBase._error', context: context);
 
   String get error {
     _$_errorAtom.reportRead();
@@ -28,7 +28,7 @@ mixin _$RegisterPageController on RegisterPageControllerBase, Store {
   }
 
   late final _$_loadingAtom =
-      Atom(name: 'RegisterPageControllerBase._loading', context: context);
+      Atom(name: 'AuthControllerPagesBase._loading', context: context);
 
   bool get loading {
     _$_loadingAtom.reportRead();
@@ -46,7 +46,7 @@ mixin _$RegisterPageController on RegisterPageControllerBase, Store {
   }
 
   late final _$_successAtom =
-      Atom(name: 'RegisterPageControllerBase._success', context: context);
+      Atom(name: 'AuthControllerPagesBase._success', context: context);
 
   bool get success {
     _$_successAtom.reportRead();
@@ -63,50 +63,50 @@ mixin _$RegisterPageController on RegisterPageControllerBase, Store {
     });
   }
 
-  late final _$RegisterPageControllerBaseActionController =
-      ActionController(name: 'RegisterPageControllerBase', context: context);
+  late final _$AuthControllerPagesBaseActionController =
+      ActionController(name: 'AuthControllerPagesBase', context: context);
 
   @override
   void showLoading() {
-    final _$actionInfo = _$RegisterPageControllerBaseActionController
-        .startAction(name: 'RegisterPageControllerBase.showLoading');
+    final _$actionInfo = _$AuthControllerPagesBaseActionController.startAction(
+        name: 'AuthControllerPagesBase.showLoading');
     try {
       return super.showLoading();
     } finally {
-      _$RegisterPageControllerBaseActionController.endAction(_$actionInfo);
+      _$AuthControllerPagesBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void hideLoading() {
-    final _$actionInfo = _$RegisterPageControllerBaseActionController
-        .startAction(name: 'RegisterPageControllerBase.hideLoading');
+    final _$actionInfo = _$AuthControllerPagesBaseActionController.startAction(
+        name: 'AuthControllerPagesBase.hideLoading');
     try {
       return super.hideLoading();
     } finally {
-      _$RegisterPageControllerBaseActionController.endAction(_$actionInfo);
+      _$AuthControllerPagesBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void isSucess() {
-    final _$actionInfo = _$RegisterPageControllerBaseActionController
-        .startAction(name: 'RegisterPageControllerBase.isSucess');
+    final _$actionInfo = _$AuthControllerPagesBaseActionController.startAction(
+        name: 'AuthControllerPagesBase.isSucess');
     try {
       return super.isSucess();
     } finally {
-      _$RegisterPageControllerBaseActionController.endAction(_$actionInfo);
+      _$AuthControllerPagesBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setError(String error) {
-    final _$actionInfo = _$RegisterPageControllerBaseActionController
-        .startAction(name: 'RegisterPageControllerBase.setError');
+    final _$actionInfo = _$AuthControllerPagesBaseActionController.startAction(
+        name: 'AuthControllerPagesBase.setError');
     try {
       return super.setError(error);
     } finally {
-      _$RegisterPageControllerBaseActionController.endAction(_$actionInfo);
+      _$AuthControllerPagesBaseActionController.endAction(_$actionInfo);
     }
   }
 

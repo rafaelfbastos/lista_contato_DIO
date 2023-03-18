@@ -7,7 +7,7 @@ import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:lista_contatos/app/core/extensions/theme_extensions.dart';
 import 'package:lista_contatos/app/core/widgets/default_text_field.dart';
 import 'package:lista_contatos/app/models/user_model.dart';
-import 'package:lista_contatos/app/modules/auth/register/register_page_controller.dart';
+import 'package:lista_contatos/app/modules/auth/auth_controller_pages.dart';
 import 'package:mobx/mobx.dart';
 import 'package:validatorless/validatorless.dart';
 
@@ -22,13 +22,26 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState
-    extends ModularState<RegisterPage, RegisterPageController> {
+    extends ModularState<RegisterPage, AuthControllerPages> {
   final nameEC = TextEditingController();
   final emailEC = TextEditingController();
   final passworEC = TextEditingController();
   final confirmPassworEC = TextEditingController();
   final formKey = GlobalKey<FormState>();
   var toDispose = <ReactionDisposer>[];
+
+  final listQuest = [
+    "Qual é o nome da sua mãe?",
+    "Qual é o nome do seu animal de estimação?",
+    "Qual é o nome da sua cidade natal?",
+    "Qual é o nome da sua escola primária?",
+    "Qual é o nome da sua banda favorita?",
+    "Qual é o nome da sua comida favorita?",
+    "Qual é o nome da sua avó materna?",
+    "Qual é o nome do seu melhor amigo de infância?",
+    "Qual é o nome do seu personagem favorito de ficção?",
+    "Qual é o nome do seu time esportivo favorito?"
+  ];
 
   @override
   void initState() {
@@ -58,6 +71,8 @@ class _RegisterPageState
 
   @override
   void dispose() {
+    var textECs = [nameEC, emailEC];
+
     toDispose.map((e) => e);
     super.dispose();
   }
@@ -141,6 +156,8 @@ class _RegisterPageState
                       var password = utf8.encode(passworEC.text);
 
                       final user = UserModel(
+                          secretAnswer: "",
+                          secretQuestion: "",
                           email: email,
                           password: sha1.convert(password).toString(),
                           name: name);

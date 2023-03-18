@@ -7,12 +7,14 @@ class DefaultTextField extends StatelessWidget {
   final TextEditingController? textEC;
   final bool obscureText;
   final FormFieldValidator<String>? validator;
+  final FocusNode? focus;
 
   const DefaultTextField(
       {super.key,
       required this.label,
       this.obscureText = false,
       this.textEC,
+      this.focus,
       this.validator});
 
   @override
@@ -22,6 +24,7 @@ class DefaultTextField extends StatelessWidget {
     return ValueListenableBuilder<bool>(
       valueListenable: obscureTextVN,
       builder: (context, value, child) => TextFormField(
+        focusNode: focus,
         controller: textEC,
         validator: validator,
         cursorColor: context.primaryColor,

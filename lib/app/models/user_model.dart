@@ -17,17 +17,29 @@ class UserModel extends HiveObject {
   String? objectId;
   @HiveField(4)
   String? path;
+  @HiveField(5)
+  String secretQuestion;
+  @HiveField(6)
+  String secretAnswer;
 
   UserModel({
     required this.email,
     required this.password,
     required this.name,
-    this.objectId,
+    required this.secretQuestion,
+    required this.secretAnswer,
     this.path,
+    this.objectId,
   });
 
   factory UserModel.empty() {
-    return UserModel(email: "", password: "", name: "", objectId: "");
+    return UserModel(
+        email: "",
+        password: "",
+        name: "",
+        objectId: "",
+        secretAnswer: "",
+        secretQuestion: "");
   }
 
   UserModel copyWith({
@@ -36,6 +48,8 @@ class UserModel extends HiveObject {
     String? name,
     String? objectId,
     String? path,
+    String? secretQuestion,
+    String? secretAnswer,
   }) {
     return UserModel(
       email: email ?? this.email,
@@ -43,6 +57,8 @@ class UserModel extends HiveObject {
       name: name ?? this.name,
       objectId: objectId ?? this.objectId,
       path: path ?? this.path,
+      secretQuestion: secretQuestion ?? this.secretQuestion,
+      secretAnswer: secretAnswer ?? this.secretAnswer,
     );
   }
 
@@ -53,6 +69,8 @@ class UserModel extends HiveObject {
       'name': name,
       'objectId': objectId,
       'path': path,
+      'secretQuestion': secretQuestion,
+      'secretAnswer': secretAnswer,
     };
   }
 
@@ -63,6 +81,8 @@ class UserModel extends HiveObject {
       name: map['name'] as String,
       objectId: map['objectId'] != null ? map['objectId'] as String : null,
       path: map['path'] != null ? map['path'] as String : null,
+      secretQuestion: map['secretQuestion'] as String,
+      secretAnswer: map['secretAnswer'] as String,
     );
   }
 
@@ -73,7 +93,7 @@ class UserModel extends HiveObject {
 
   @override
   String toString() {
-    return 'UserModel(email: $email, password: $password, name: $name, objectId: $objectId, path: $path)';
+    return 'UserModel(email: $email, password: $password, name: $name, objectId: $objectId, path: $path, secretQuestion: $secretQuestion, secretAnswer: $secretAnswer)';
   }
 
   @override
@@ -84,7 +104,9 @@ class UserModel extends HiveObject {
         other.password == password &&
         other.name == name &&
         other.objectId == objectId &&
-        other.path == path;
+        other.path == path &&
+        other.secretQuestion == secretQuestion &&
+        other.secretAnswer == secretAnswer;
   }
 
   @override
@@ -93,6 +115,8 @@ class UserModel extends HiveObject {
         password.hashCode ^
         name.hashCode ^
         objectId.hashCode ^
-        path.hashCode;
+        path.hashCode ^
+        secretQuestion.hashCode ^
+        secretAnswer.hashCode;
   }
 }

@@ -7,7 +7,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lista_contatos/app/core/extensions/theme_extensions.dart';
 import 'package:lista_contatos/app/core/ui/messages.dart';
 import 'package:lista_contatos/app/core/widgets/default_text_field.dart';
-import 'package:lista_contatos/app/modules/auth/login/login_page_controller.dart';
+import 'package:lista_contatos/app/modules/auth/auth_controller_pages.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:validatorless/validatorless.dart';
@@ -21,8 +21,12 @@ class LoginPage extends StatefulWidget {
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
+class _LoginPageState extends ModularState<LoginPage, AuthControllerPages> {
   var toDispose = <ReactionDisposer>[];
+  final emailEC = TextEditingController();
+  final passwordEC = TextEditingController();
+  final formKey = GlobalKey<FormState>();
+  final emailFocus = FocusNode();
 
   @override
   void initState() {
@@ -49,10 +53,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
 
   @override
   Widget build(BuildContext context) {
-    final emailEC = TextEditingController();
-    final passwordEC = TextEditingController();
-    final formKey = GlobalKey<FormState>();
-
     return Scaffold(
       body: Form(
         key: formKey,
@@ -83,6 +83,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
                   Validatorless.required("Campo obrigatório:"),
                   Validatorless.email("Digite um e-mail válido")
                 ]),
+                focus: emailFocus,
                 label: "Email",
                 textEC: emailEC,
               ),

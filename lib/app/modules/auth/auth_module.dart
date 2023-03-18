@@ -1,9 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:lista_contatos/app/modules/auth/auth_controller_pages.dart';
 import 'package:lista_contatos/app/modules/auth/home/auth_home_page.dart';
 import 'package:lista_contatos/app/modules/auth/login/login_page.dart';
-import 'package:lista_contatos/app/modules/auth/login/login_page_controller.dart';
 import 'package:lista_contatos/app/modules/auth/register/register_page.dart';
-import 'package:lista_contatos/app/modules/auth/register/register_page_controller.dart';
 import 'package:lista_contatos/app/repositories/user_repository.dart';
 import 'package:lista_contatos/app/repositories/user_repository_impl.dart';
 import 'package:lista_contatos/app/services/user_service.dart';
@@ -15,9 +14,7 @@ class AuthModule extends Module {
     Bind<UserRepository>((i) => UserRepositoryImpl()),
     Bind<UserService>(
         (i) => UserServiceImpl(userRepository: i(), authStore: i())),
-    Bind<LoginPageController>((i) => LoginPageController(userServiceImpl: i())),
-    Bind<RegisterPageController>(
-        (i) => RegisterPageController(userServiceImpl: i()))
+    Bind((i) => AuthControllerPages(userServiceImpl: i()))
   ];
 
   @override
