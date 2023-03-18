@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
@@ -13,13 +14,16 @@ class UserModel extends HiveObject {
   @HiveField(2)
   String name;
   @HiveField(3)
-  String objectId;
+  String? objectId;
+  @HiveField(4)
+  String? path;
 
   UserModel({
     required this.email,
     required this.password,
     required this.name,
-    required this.objectId,
+    this.objectId,
+    this.path,
   });
 
   factory UserModel.empty() {
@@ -30,13 +34,15 @@ class UserModel extends HiveObject {
     String? email,
     String? password,
     String? name,
-    String? id,
+    String? objectId,
+    String? path,
   }) {
     return UserModel(
       email: email ?? this.email,
       password: password ?? this.password,
       name: name ?? this.name,
-      objectId: id ?? this.objectId,
+      objectId: objectId ?? this.objectId,
+      path: path ?? this.path,
     );
   }
 
@@ -46,6 +52,7 @@ class UserModel extends HiveObject {
       'password': password,
       'name': name,
       'objectId': objectId,
+      'path': path,
     };
   }
 
@@ -54,7 +61,8 @@ class UserModel extends HiveObject {
       email: map['email'] as String,
       password: map['password'] as String,
       name: map['name'] as String,
-      objectId: map['objectId'] as String,
+      objectId: map['objectId'] != null ? map['objectId'] as String : null,
+      path: map['path'] != null ? map['path'] as String : null,
     );
   }
 
@@ -65,7 +73,7 @@ class UserModel extends HiveObject {
 
   @override
   String toString() {
-    return 'UserModel(email: $email, password: $password, name: $name, objectId: $objectId)';
+    return 'UserModel(email: $email, password: $password, name: $name, objectId: $objectId, path: $path)';
   }
 
   @override
@@ -75,7 +83,8 @@ class UserModel extends HiveObject {
     return other.email == email &&
         other.password == password &&
         other.name == name &&
-        other.objectId == objectId;
+        other.objectId == objectId &&
+        other.path == path;
   }
 
   @override
@@ -83,6 +92,7 @@ class UserModel extends HiveObject {
     return email.hashCode ^
         password.hashCode ^
         name.hashCode ^
-        objectId.hashCode;
+        objectId.hashCode ^
+        path.hashCode;
   }
 }

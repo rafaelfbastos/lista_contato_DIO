@@ -45,4 +45,12 @@ class UserRepositoryImpl implements UserRepository {
 
     return (dataList.isNotEmpty) ? true : false;
   }
+
+  @override
+  Future<void> saveNewUser(UserModel user) async {
+    final response = await _dio.post("", data: user.toJson());
+    if (response.statusCode != 201) {
+      throw AuthException(message: "Erro ao cadastrar");
+    }
+  }
 }

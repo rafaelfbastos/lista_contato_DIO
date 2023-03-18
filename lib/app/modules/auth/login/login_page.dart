@@ -12,6 +12,8 @@ import 'package:mobx/mobx.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
 import 'package:validatorless/validatorless.dart';
 
+import '../../../core/ui/custom_loader.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -25,7 +27,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
   @override
   void initState() {
     final loadReact = reaction<bool>((_) => controller.loading, (loading) {
-      loading ? Loader.show(context) : Loader.hide();
+      loading ? CustomLoader.show(context).primary() : Loader.hide();
     });
 
     final errorReact = reaction<String>((_) => controller.error, (error) {
@@ -121,11 +123,12 @@ class _LoginPageState extends ModularState<LoginPage, LoginPageController> {
                 children: [
                   const Text("Ainda não é cadastrado, "),
                   TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Clique aqui.",
-                      style: TextStyle(color: context.primaryColor),
-                    ),
+                    onPressed: () {
+                      Modular.to.pushNamed("/auth/register");
+                    },
+                    style: TextButton.styleFrom(
+                        foregroundColor: context.primaryColor),
+                    child: const Text("Clique aqui."),
                   )
                 ],
               ),

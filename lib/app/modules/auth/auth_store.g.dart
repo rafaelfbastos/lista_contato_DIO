@@ -44,18 +44,12 @@ mixin _$AuthStore on AuthStoreBase, Store {
     return _$loginAsyncAction.run(() => super.login(user));
   }
 
-  late final _$AuthStoreBaseActionController =
-      ActionController(name: 'AuthStoreBase', context: context);
+  late final _$logoutAsyncAction =
+      AsyncAction('AuthStoreBase.logout', context: context);
 
   @override
-  dynamic logout() {
-    final _$actionInfo = _$AuthStoreBaseActionController.startAction(
-        name: 'AuthStoreBase.logout');
-    try {
-      return super.logout();
-    } finally {
-      _$AuthStoreBaseActionController.endAction(_$actionInfo);
-    }
+  Future logout() {
+    return _$logoutAsyncAction.run(() => super.logout());
   }
 
   @override

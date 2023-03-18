@@ -26,6 +26,7 @@ class DefaultTextField extends StatelessWidget {
         validator: validator,
         cursorColor: context.primaryColor,
         obscureText: obscureTextVN.value,
+        style: TextStyle(color: context.darkColor),
         decoration: InputDecoration(
           label: Text(
             label,
@@ -46,6 +47,10 @@ class DefaultTextField extends StatelessWidget {
           suffixIconColor: context.primaryColor,
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: context.primaryColorDark),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.red),
             borderRadius: BorderRadius.circular(20),
           ),
           focusedBorder: OutlineInputBorder(
